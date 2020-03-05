@@ -11,7 +11,6 @@ const jwt = require('jsonwebtoken');
 
 router.post('/signup', (req, res, next) => {
     //checking if email already exist
-    console.log(req.body.email);
     User.find({ email: req.body.email })
         .exec().then(user => {
             if (user.length >= 1) {
@@ -53,7 +52,6 @@ router.post('/signup', (req, res, next) => {
 })
 
 router.post('/admin-signup', (req, res, next) => {
-    console.log(req.body.email);
     User.find({ email: req.body.email })
         .exec().then(user => {
             if (user.length > 1) {
@@ -93,10 +91,6 @@ router.post('/admin-signup', (req, res, next) => {
 })
 
 router.post('/login', (req, res, next) => {
-
-    console.log("BE-user.js - starting login()");
-    console.log(req.body.email);
-    console.log(req.body.password);
     User.find({ email: req.body.email })
         .exec()
         .then(user => {
@@ -134,7 +128,6 @@ router.post('/login', (req, res, next) => {
             })
         })
         .catch(err => {
-            console.log("BE-user.js - error in login()");
             res.status(500).json({
                 error: err
             });

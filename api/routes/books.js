@@ -29,7 +29,6 @@ router.get("/all-books", checkAuth, (req, res, next) => {
             res.status(200).json(response);
         })
         .catch(err => {
-            console.log(err);
             res.status(500).json({
                 error: err
             });
@@ -55,7 +54,6 @@ router.get("/book-details/:bookId", checkAuth, (req, res, next) => {
             res.status(200).json(response);
         })
         .catch(err => {
-            console.log(err);
             res.status(500).json({
                 error: err
             });
@@ -73,7 +71,6 @@ router.post("/add-book", checkAuth, (req, res, next) => {
     book
         .save()
         .then(result => {
-            console.log(result);
             res.status(201).json({
                 message: "Book successfully added",
             });

@@ -26,7 +26,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
-    console.log('header-interceptor: Start setting headers.')
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
         "Access-Control-Allow-Headers", "*"
@@ -49,7 +48,6 @@ app.get('*', function (request, response) {
 });
 
 app.listen(port, host);
-console.log(`Running on http://${host}:${port}`);
 
 app.use((req, res, next) => {
     const error = new Error("Not Found");
@@ -58,7 +56,6 @@ app.use((req, res, next) => {
 })
 
 app.use((error, req, res, next) => {
-    console.log('header-interceptor: error 500.')
     if (error) {
         res.sendStatus(error.status)
     }

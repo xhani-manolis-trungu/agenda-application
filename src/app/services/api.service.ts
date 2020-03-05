@@ -29,7 +29,6 @@ export class ApiService {
     }
 
     bookDetail(id:any){
-      console.log("FE: api.service.ts call book-details id=",id)
       return this.httpClient.get('/books/book-details/'+id);
     }
 
