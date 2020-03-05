@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap Simple Login Form</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
+</head>
+<body>
+  <div style="text-align: center;width:80%;margin-top:20px">
+    <button *ngIf="user_type=='admin'" class="btn btn-info" routerLink="/add-books">
+      <i class="fa fa-plus-square-o"></i> Add Books
+    </button>
+    <a href="javascript:;" (click)="logout()" style="float:right"><i class="fa fa-sign-out fa-3x"></i></a>
+  </div>
+
+  <table id="example" class="table table-dark table-hover" style="width:60%; margin-top:40px;" align="center">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Price</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of booksList">
+        <td>{{book.title}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.isbn}}</td>
+        <td>{{book.price}}</td>
+        <!-- checking if the user is an admin, if the user is an admin then the delete button will be displayed-->
+        <td *ngIf="user_type=='admin'">
+          <a href="javascript:;" routerLink="/edit-books/{{book._id}}"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
+        </td>
+        <td>
+          <a href="javascript:;" (click)="deleteBook(book._id)"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
