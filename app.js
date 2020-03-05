@@ -39,7 +39,7 @@ app.use(function (req, res, next) {
     }
     next();
 })
-app.user(express.static(CLIENT_BUILD_PATH));
+app.use(express.static(CLIENT_BUILD_PATH));
 app.use('/user', userRoutes);
 app.use('/books', bookRoutes);
 
