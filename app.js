@@ -14,7 +14,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const mongoURL = process.env.MONGOCONNECT;
 
-const CLIENT_BUILD_PATH = path.join(__dirname, './dist');
+const CLIENT_BUILD_PATH = path.join(__dirname, './dist/');
 
 mongoose.connect(
     mongoURL,
