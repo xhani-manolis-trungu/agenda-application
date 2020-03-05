@@ -14,7 +14,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const mongoURL = process.env.MONGOCONNECT;
 
-const CLIENT_BUILD_PATH = path.join(__dirname, './dist/');
+const CLIENT_BUILD_PATH = path.join(__dirname, '.', 'dist/');
 
 mongoose.connect(
     mongoURL,
@@ -39,13 +39,13 @@ app.use(function (req, res, next) {
     }
     next();
 })
-
+app.user(express.static(CLIENT_BUILD_PATH));
 app.use('/user', userRoutes);
 app.use('/books', bookRoutes);
 
 // All remaining requests return the React app, so it can handle routing.
 app.get('*', function (request, response) {
-    response.sendFile(path.join(CLIENT_BUILD_PATH, 'index.html'));
+    response.sendFile('index.html', {CLIENT_BUILD_PATH});
 });
 
 app.listen(port, host);
